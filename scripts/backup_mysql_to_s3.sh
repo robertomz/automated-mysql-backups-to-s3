@@ -48,7 +48,19 @@ fi
 
 log "Generating dump..."
 
-"$MYSQL_BIN/mysqldump"     --defaults-extra-file="$MYSQL_CNF"     --host="$DB_HOST"     --port="$DB_PORT"     --single-transaction     --quick     --skip-lock-tables     --routines     --triggers     --events     "$DB_NAME"     > "$DUMP_FILE"     2>> "$LOG_FILE"
+"$MYSQL_BIN/mysqldump" \
+    --defaults-extra-file="$MYSQL_CNF" \
+    --host="$DB_HOST" \
+    --port="$DB_PORT" \
+    --single-transaction \
+    --quick \
+    --skip-lock-tables \
+    --routines \
+    --triggers \
+    --events \
+    "$DB_NAME" \
+    > "$DUMP_FILE" \
+    2>> "$LOG_FILE"
 
 DUMP_EXIT=$?
 
@@ -78,7 +90,10 @@ fi
 
 log "Verifying object in S3..."
 
-aws s3api head-object     --bucket "$S3_BUCKET"     --key "${S3_PREFIX}/$(basename "$DUMP_FILE")"     >> "$LOG_FILE" 2>&1
+aws s3api head-object \
+    --bucket "$S3_BUCKET" \
+    --key "${S3_PREFIX}/$(basename "$DUMP_FILE")" \
+    >> "$LOG_FILE" 2>&1
 
 VERIFY_EXIT=$?
 
