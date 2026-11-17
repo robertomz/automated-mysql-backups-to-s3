@@ -1,0 +1,4 @@
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Run every day at 01:10 AM.
+10 1 * * * /opt/mysql-backup/backup_mysql_to_s3.sh >> /var/log/mysql-backup/cron.log 2>&1
