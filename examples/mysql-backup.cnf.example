@@ -1,0 +1,4 @@
+[client]
+user=backup_user
+password=CHANGE_ME
+port=3306
