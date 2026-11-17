@@ -1,0 +1,23 @@
+# Credentials
+*.cnf
+!*.cnf.example
+.env
+.env.*
+
+# Database dumps
+*.sql
+*.sql.gz
+*.dump
+
+# Logs
+*.log
+logs/
+
+# Local temp files
+*.tmp
+*.bak
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
