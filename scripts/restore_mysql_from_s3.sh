@@ -37,7 +37,11 @@ if [ $? -ne 0 ] || [ ! -s "$RESTORE_FILE" ]; then
 fi
 
 echo "Creating target database if needed..."
-"$MYSQL_BIN/mysql"     --defaults-extra-file="$MYSQL_CNF"     --host="$DB_HOST"     --port="$DB_PORT"     -e "CREATE DATABASE IF NOT EXISTS \`${TARGET_DB}\`;"
+"$MYSQL_BIN/mysql" \
+    --defaults-extra-file="$MYSQL_CNF" \
+    --host="$DB_HOST" \
+    --port="$DB_PORT" \
+    -e "CREATE DATABASE IF NOT EXISTS \`${TARGET_DB}\`;"
 
 if [ $? -ne 0 ]; then
     echo "ERROR: could not create target database."
@@ -45,7 +49,11 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Restoring into ${TARGET_DB}..."
-"$MYSQL_BIN/mysql"     --defaults-extra-file="$MYSQL_CNF"     --host="$DB_HOST"     --port="$DB_PORT"     "$TARGET_DB" < "$RESTORE_FILE"
+"$MYSQL_BIN/mysql" \
+    --defaults-extra-file="$MYSQL_CNF" \
+    --host="$DB_HOST" \
+    --port="$DB_PORT" \
+    "$TARGET_DB" < "$RESTORE_FILE"
 
 if [ $? -ne 0 ]; then
     echo "ERROR: restore failed."
